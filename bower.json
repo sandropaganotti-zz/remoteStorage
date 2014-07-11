@@ -1,0 +1,19 @@
+{
+  "name": "remoteStorage",
+  "version": "1.0.0",
+  "homepage": "https://github.com/sandropaganotti/remoteStorage",
+  "authors": [
+    "Sandro Paganotti <sandro.paganotti@gmail.com>"
+  ],
+  "description": "remoteStorage store files remotely",
+  "main": "client/index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ]
+}
