@@ -9,7 +9,12 @@ module.exports = function(grunt){
       dev: {
         script: 'server/app.js',
         options: {
-          watch: ['server']
+          watch: ['server'],
+          callback: function(nodemon){
+            nodemon.on('restart', function(){
+              require('fs').writeFileSync('tmp/.rebooted','rebooted');
+            });
+          }
         }
       }
     },
@@ -23,10 +28,34 @@ module.exports = function(grunt){
       }
     },
 
+    mocha: {
+      test: {
+        src: ['client/test/runner.html'],
+        options: {
+          run: true,
+          log: true
+        }
+      }
+    },
+
     watch: {
       serverTest: {
         files: ['server/**/*'],
         tasks: ['mochaTest']
+      },
+      clientTest: {
+        files: ['client/**/*{.html,.js}'],
+        tasks: ['mocha']
+      },
+      buildSass: {
+        files: ['client/scss/*'],
+        tasks: ['sass']
+      },
+      livereload: {
+        files: ['client/**/*','tmp/.rebooted','tmp/css/*'],
+        options: {
+          livereload: true
+        }
       }
     },
 
@@ -35,6 +64,17 @@ module.exports = function(grunt){
         tasks: ['nodemon','watch'],
         options: {
           logConcurrentOutput: true
+        }
+      }
+    },
+
+    sass: {
+      dev: {
+        files: {
+          'client/css/app.css': 'client/scss/app.scss'
+        },
+        options: {
+          sourcemap: true
         }
       }
     }

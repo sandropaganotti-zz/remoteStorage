@@ -1,1 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>remoteStorage, easy as a drag-n-drop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="css/app.css">
+  </head>
+  <body ng-app="remoteStorageApp">
+    <rs-google-login current-user="currentUser" client-id="711683523030-0tprl9itf5p6od9lk5f93b6i7uot1tum.apps.googleusercontent.com"></rs-google-login>
 
+    <div class="container">
+      <div class="row">
+        <div class="header">
+          <button ng-if="currentUser.readyToSignIn && !currentUser.userDetails" ng-click="currentUser.doSignIn()">Effettua il login</button>
+          <p ng-if="currentUser.readyToSignIn && currentUser.userDetails">Benvenuto {{currentUser.userDetails.displayName}}</p>
+        </div>
+      </div>
+      <div class="row" ng-controller="fileListCtrl" ng-if="currentUser.userDetails">
+        <table class="file-list">
+          <thead>
+            <th>#</th>
+            <th>File name</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="file in fileList">
+              <td>{{file.id}}</td>
+              <td>{{file.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="components/angular/angular.js"></script>
+    <script src="components/angular-resource/angular-resource.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/directives/google-login.js"></script>
+    <script src="js/controllers/file-list.js"></script>
+    <script src="js/factories/file.js"></script>
+  </body>
+</html>

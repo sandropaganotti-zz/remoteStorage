@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/sandropaganotti/remoteStorage",
   "dependencies": {
-    "express": "~4.5.1"
+    "express": "~4.5.1",
+    "mongoose": "~3.8.13"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -28,6 +29,10 @@
     "grunt-mocha-test": "~0.11.0",
     "supertest": "~0.13.0",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-concurrent": "~0.5.0"
+    "grunt-concurrent": "~0.5.0",
+    "grunt-mocha": "~0.4.11",
+    "grunt-contrib-sass": "~0.7.3",
+    "mongodb": "~1.4.7",
+    "mocha-mongoose": "~1.0.1"
   }
 }

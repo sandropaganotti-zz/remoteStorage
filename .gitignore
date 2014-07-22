@@ -1,2 +1,5 @@
 node_modules
 .bowerrc
+tmp/.rebooted
+.sass-cache
+client/components

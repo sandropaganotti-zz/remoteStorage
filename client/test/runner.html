@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Frontend Test Runner</title>
+    <link rel="stylesheet" type="text/css" href="../components/mocha/mocha.css">
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+    <script src="../components/mocha/mocha.js"></script>
+    <script src="../components/chai/chai.js"></script>
+    <script>
+      mocha.setup('bdd')
+      var expect = chai.expect;
+    </script>
+    <script src="../components/angular/angular.js"></script>
+    <script src="../components/angular-mocks/angular-mocks.js"></script>
+    <script src="../components/angular-resource/angular-resource.js"></script>
+    <!-- SOURCES -->
+    <script src="../js/app.js"></script>
+    <script src="../js/directives/google-login.js"></script>
+    <script src="../js/controllers/file-list.js"></script>
+    <script src="../js/factories/file.js"></script>
+    <!-- TESTS -->
+    <script src="app.js"></script>
+    <script src="directives/google-login.js"></script>
+    <script src="controllers/file-list.js"></script>
+    <script src="factories/file.js"></script>
+    <script>
+      if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+        mocha.run();
+      }
+    </script>
+  </body>
+</head>
