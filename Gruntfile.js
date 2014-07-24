@@ -16,6 +16,14 @@ module.exports = function(grunt){
             });
           }
         }
+      },
+      dist: {
+        script: 'server/app.js',
+        options: {
+          env: {
+            NODE_ENV: 'dist'
+          }
+        }
       }
     },
 
@@ -49,7 +57,7 @@ module.exports = function(grunt){
       },
       buildSass: {
         files: ['client/scss/*'],
-        tasks: ['sass']
+        tasks: ['sass:dev']
       },
       livereload: {
         files: ['client/**/*','tmp/.rebooted','tmp/css/*'],
@@ -61,7 +69,7 @@ module.exports = function(grunt){
 
     concurrent: {
       dev: {
-        tasks: ['nodemon','watch'],
+        tasks: ['nodemon:dev','watch'],
         options: {
           logConcurrentOutput: true
         }
@@ -76,11 +84,53 @@ module.exports = function(grunt){
         options: {
           sourcemap: true
         }
+      },
+      dist: {
+        files: {
+          'client-dist/app.css': 'client/scss/app.scss'
+        },
+        options: {
+          style: 'compressed'
+        }
+      }
+    },
+
+    ngAnnotate: {
+      dist: {
+        files: {
+          'tmp/client/app.js': [
+            'client/js/app.js',
+            'client/js/factories/*.js',
+            'client/js/directives/*.js',
+            'client/js/controllers/*.js'
+          ]
+        }
+      }
+    },
+
+    uglify: {
+      dist: {
+        files: {
+          'client-dist/app.js': [
+            'client/components/angular/angular.js',
+            'client/components/angular-resource/angular-resource.js',
+            'tmp/client/app.js'
+          ]
+        }
+      }
+    },
+
+    processhtml: {
+      dist: {
+        files: {
+          'client-dist/index.html': ['client/index.html']
+        }
       }
     }
 
   });
 
    grunt.registerTask('default', ['concurrent']);
+   grunt.registerTask('build', ['ngAnnotate', 'sass:dist', 'uglify', 'processhtml']);
 
 };

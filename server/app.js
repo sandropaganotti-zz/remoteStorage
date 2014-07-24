@@ -17,7 +17,9 @@ app.get('/api/files', function(req, res){
   });
 });
 
-app.use(express.static(__dirname + '/../client'));
+app.use(express.static(__dirname +
+  (process.env.NODE_ENV === 'dist' ? '/../client-dist' : '/../client')
+));
 
 if (require.main === module) {
   mongoose.connect(app.get('db'), function(){

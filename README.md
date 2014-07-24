@@ -26,10 +26,12 @@ steps
 * nodemon onrestart
 * google sign in
 * bower install angular-mocks --save-dev
-* jshint
 * bower install bootstrap-sass-official --save
 * npm install grunt-contrib-sass --save-dev
 * sass 3.3.0 +
 * bower install angular-resource --save
 * npm install mongoose --save
 * npm install mocha-mongoose --save-dev
+* npm install grunt-ng-annotate --save-dev
+* npm install grunt-contrib-uglify --save-dev
+* npm install grunt-processhtml --save-dev
